@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #2b2b2b;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -26,6 +26,25 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.Guesses-grid {
+  width: 350px;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-gap: 5px;
+  background-color: yellow;
+}
+
+.Guess-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+  background-color: blue;
+}
+
+.Tile {
+  background-color: red;
 }
 
 @keyframes App-logo-spin {
