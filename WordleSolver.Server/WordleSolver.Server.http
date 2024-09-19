@@ -1,0 +1,6 @@
+@WordleSolver.Server_HostAddress = http://localhost:5019
+
+GET {{WordleSolver.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
