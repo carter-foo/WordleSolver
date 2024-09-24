@@ -3,6 +3,7 @@
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
+    --color-incorrect: #3a3a3c;
 }
 
 tr:nth-child(even) {

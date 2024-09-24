@@ -1,0 +1,34 @@
+.letterBox {
+  width: 75px;
+  height: 75px;
+  margin: 5px;
+  border: 2px solid #ffffff;
+  border-radius: 7px;
+  align-content: center;
+  justify-content: center;
+}
+
+.letterInput {
+  width: 90%;
+  height: 90%;
+  font-size: 50px;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  caret-color: transparent;
+}
+
+.yellow {
+  background-color: #b59f3b
+}
+
+.green {
+  background-color: #538d4e;
+}
+
+.textarea:focus, input:focus {
+  background-color: rgb(89, 89, 89);
+  outline: none;
+}

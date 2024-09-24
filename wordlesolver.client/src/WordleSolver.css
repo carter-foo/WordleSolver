@@ -1,0 +1,4 @@
+.playfield {
+  display: flex;
+  flex-direction: column;
+}
