@@ -6,6 +6,7 @@
   border-radius: 7px;
   align-content: center;
   justify-content: center;
+  position: relative;
 }
 
 .letterInput {
@@ -21,14 +22,14 @@
 }
 
 .yellow {
-  background-color: #b59f3b
+  background-color: var(--wordle-yellow-color);
 }
 
 .green {
-  background-color: #538d4e;
+  background-color: var(--wordle-green-color);
 }
 
 .textarea:focus, input:focus {
-  background-color: rgb(89, 89, 89);
+  background-color: rgba(89, 89, 89, 0.4);
   outline: none;
 }

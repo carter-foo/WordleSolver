@@ -11,6 +11,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --wordle-yellow-color: #b59f3b;
+  --wordle-green-color: #538d4e;
 }
 
 a {

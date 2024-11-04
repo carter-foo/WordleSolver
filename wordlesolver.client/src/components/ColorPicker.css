@@ -1,0 +1,30 @@
+.colorPicker {
+  background: white;
+  position: absolute;
+  border-radius: 7px;
+  left: 77px; /* width of letter box plus border */
+  top: 3px; /* width of border */
+  z-index: 1000;
+  display: flex;
+  padding: 10px;
+}
+
+.clearColorButton, .yellowColorButton, .greenColorButton {
+  width: 50px;
+  height: 50px;
+  border-radius: 0;
+  margin: 5px;
+}
+
+.clearColorButton {
+  background-color: transparent;
+  border: 2px black dotted;
+}
+
+.yellowColorButton {
+  background-color: var(--wordle-yellow-color);
+}
+
+.greenColorButton {
+  background-color: var(--wordle-green-color);
+}
