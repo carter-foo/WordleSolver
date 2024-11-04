@@ -3,50 +3,30 @@ import ColorPicker from "./ColorPicker";
 import "./WordleLetter.css";
 
 const WordleLetter = React.forwardRef((props, ref) => {
-  const [letter, setLetter] = useState("");
   const [showColorPicker, setShowColorPicker] = useState(false);
-  /*
-  1 - clear
-  2 - yellow
-  3 - green
-  */
-  const [colorState, setColorState] = useState(1);
-
   const formRef = useRef(null);
-
-  const goToPreviousLetter = () => {
-    if (props.prevRef) {
-      props.prevRef.current.focus();
-    }
-  };
-
-  const goToNextLetter = () => {
-    if (props.nextRef) {
-      props.nextRef.current.focus();
-    }
-  };
 
   const handleKeyDown = (event) => {
     if (event.keyCode === 37) {
       // Left arrow
-      goToPreviousLetter();
+      props.goBack();
     } else if (event.keyCode === 39) {
       // Right arrow
-      goToNextLetter();
+      props.goForward();
     } else if (event.keyCode == 8) {
       // Backspace
-      if (letter == "") {
-        goToPreviousLetter();
+      if (props.letter !== "") {
+        props.setLetter("");
       } else {
-        setLetter("");
+        props.backspace();
       }
     } else if (event.keyCode >= 65 && event.keyCode <= 90) {
       // Between A and Z
-      setLetter(String.fromCharCode(event.keyCode));
-      goToNextLetter();
+      props.setLetter(String.fromCharCode(event.keyCode));
+      props.goForward();
     } else if (event.keyCode == 13) {
       // Enter
-      props.onConfirm()
+      props.submit();
     }
   };
 
@@ -56,7 +36,7 @@ const WordleLetter = React.forwardRef((props, ref) => {
 
   const handleClick = () => {
     setShowColorPicker(true);
-  }
+  };
 
   const handleBlur = (e) => {
     // Need to check if the user clicked on the color picker or one of its children so we don't lose focus
@@ -68,18 +48,18 @@ const WordleLetter = React.forwardRef((props, ref) => {
     }
   };
 
-  const handleColorChange = (newColor) => {
-    setColorState(newColor);
-  }
-
   const closeColorPicker = () => {
     setShowColorPicker(false);
-  }
+  };
+
+  const handleColorChange = (newColor) => {
+    props.setColor(newColor);
+  };
 
   const colorClass =
-    colorState === 1
+    props.color === 1
       ? "letterBox"
-      : colorState === 2
+      : props.color === 2
       ? "letterBox yellow"
       : "letterBox green";
 
@@ -89,16 +69,22 @@ const WordleLetter = React.forwardRef((props, ref) => {
         <input
           className="letterInput"
           type="text"
-          value={letter}
+          value={props.letter}
           maxLength={1}
           ref={ref}
           readOnly={true}
           onKeyDown={handleKeyDown}
           onFocus={handleFocus}
           onClick={handleClick}
-          onBlur={e => handleBlur(e)}
+          onBlur={(e) => handleBlur(e)}
         />
-        {showColorPicker ? <ColorPicker ref={formRef} onColorChange={handleColorChange} close={closeColorPicker}/> : null}
+        {showColorPicker ? (
+          <ColorPicker
+            ref={formRef}
+            onColorChange={handleColorChange}
+            close={closeColorPicker}
+          />
+        ) : null}
       </div>
     </div>
   );
