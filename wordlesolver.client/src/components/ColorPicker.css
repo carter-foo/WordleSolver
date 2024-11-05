@@ -2,8 +2,8 @@
   background: white;
   position: absolute;
   border-radius: 7px;
-  left: 77px; /* width of letter box plus border */
-  top: 3px; /* width of border */
+  top: calc(var(--letter-box-width) + var(--letter-box-border));
+  left: -25px;
   z-index: 1000;
   display: flex;
   padding: 10px;

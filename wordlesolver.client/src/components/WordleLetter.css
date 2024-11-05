@@ -1,8 +1,8 @@
 .letterBox {
-  width: 75px;
-  height: 75px;
-  margin: 5px;
-  border: 2px solid #ffffff;
+  width: var(--letter-box-width);
+  height: var(--letter-box-width);
+  margin: var(--letter-box-margin);
+  border: var(--letter-box-border) solid #ffffff;
   border-radius: 7px;
   align-content: center;
   justify-content: center;

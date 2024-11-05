@@ -1,4 +1,49 @@
-.guess {
+.guessRow {
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+}
+
+.guess {
+  --letter-box-width: 75px;
+  --letter-box-margin: 5px;
+  --letter-box-border: 2px;
+  --side-button-diameter: 65px;
+  --side-button-margin: 5px;
+  /* Used to position delete button so it doesn't un-center letter boxes */
+  position: relative;
+  padding: 0px 5px 0px 5px;
+  width: min-content;
+}
+
+.guessLetters {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.sideButtons {
+  position: absolute;
+  display: flex;
+  left: 100%;
+  top: calc(
+    (var(--letter-box-width) - var(--side-button-diameter)) / 2 +
+      var(--letter-box-margin) + var(--letter-box-border) - var(--side-button-margin)
+  );
+}
+
+.sideButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--side-button-diameter);
+  height: var(--side-button-diameter);
+  margin: var(--side-button-margin);
+  border-radius: 1000px;
+  background-color: var(--button-background-color);
+}
+
+.buttonLogo {
+  width: 40px;
+  height: 40px;
 }
