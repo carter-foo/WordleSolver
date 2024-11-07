@@ -16,6 +16,8 @@
   --wordle-green-color: #538d4e;
 
   --button-background-color: #404040;
+
+  --bottom-bar-background-color: #404040;
 }
 
 a {
@@ -33,11 +35,6 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
 
 button {

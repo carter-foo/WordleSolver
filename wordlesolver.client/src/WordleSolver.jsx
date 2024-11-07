@@ -1,6 +1,7 @@
 import { useState } from "react";
 import WordleGuess from "./components/WordleGuess";
 import "./WordleSolver.css";
+import NextGuesses from "./components/NextGuesses";
 
 function WordleSolver() {
   /*
@@ -35,29 +36,37 @@ function WordleSolver() {
 
   const checkIfDeletable = () => {
     return guesses.length > 1;
-  }
+  };
 
   const handleDeleteGuess = (index) => {
     let newGuesses = [...guesses];
     newGuesses.splice(index, 1);
     setGuesses(newGuesses);
-  }
+  };
 
   return (
-    <div>
-      <div className="playfield">
-        {guesses.map((guess, i) => {
-          return (
-            <WordleGuess
-              guess={guess}
-              setGuess={(newGuess) => handleChangeGuess(newGuess, i)}
-              addGuess={() => handleAddGuess(i)}
-              isDeletable={checkIfDeletable}
-              deleteGuess={() => handleDeleteGuess(i)}
-              key={i}
-            />
-          );
-        })}
+    <div className="wordleSolver">
+      <div className="mainContent">
+        <div className="playfield">
+          {guesses.map((guess, i) => {
+            return (
+              <WordleGuess
+                guess={guess}
+                setGuess={(newGuess) => handleChangeGuess(newGuess, i)}
+                addGuess={() => handleAddGuess(i)}
+                isDeletable={checkIfDeletable}
+                deleteGuess={() => handleDeleteGuess(i)}
+                key={i}
+              />
+            );
+          })}
+        </div>
+      </div>
+      <div className="bottomBar">
+        <div className="bottomBarContent">
+          <button className="findGuessesButton">Find Guesses</button>
+          <NextGuesses />
+        </div>
       </div>
     </div>
   );

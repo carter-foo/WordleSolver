@@ -2,11 +2,7 @@ import "./App.css";
 import WordleSolver from "./WordleSolver";
 
 function App() {
-  return (
-    <div>
-      <WordleSolver />
-    </div>
-  );
+  return <WordleSolver />;
 }
 
 export default App;

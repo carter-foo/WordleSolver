@@ -1,4 +1,41 @@
+.wordleSolver {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: safe center;
+  overflow-y: scroll;
+}
+
 .playfield {
   display: flex;
   flex-direction: column;
+  width: 1280px;
+  padding: 100px 0px 100px 0px;
+}
+
+.bottomBar {
+  background-color: var(--bottom-bar-background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+}
+
+.bottomBarContent {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-self: center;
+  height: 80%;
+}
+
+.findGuessesButton {
+  margin-right: 20px;
 }
