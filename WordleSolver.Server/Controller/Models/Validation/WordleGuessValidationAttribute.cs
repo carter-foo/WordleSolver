@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WordleSolver.Server.Models {
-    public class WordleGuessValidationAttribute : ValidationAttribute
-    {
+namespace WordleSolver.Server.Controller.Models.Validation {
+    public class WordleGuessValidationAttribute : ValidationAttribute {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext) {
             if (value == null) {
                 return new ValidationResult("Guess cannot be null");

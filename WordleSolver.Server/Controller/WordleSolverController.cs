@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WordleSolver.Server.Filters;
-using WordleSolver.Server.Models;
+using WordleSolver.Server.Controller.Filters;
+using WordleSolver.Server.Controller.Models;
 
-namespace WordleSolver.Server.Controllers {
+namespace WordleSolver.Server.Controller {
     [ApiController]
     [Route("WordleSolver")]
     public class WordleSolverController : ControllerBase {
