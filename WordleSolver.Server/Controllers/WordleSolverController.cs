@@ -1,26 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WordleSolver.Server.Filters;
 using WordleSolver.Server.Models;
 
-namespace WordleSolver.Server.Controllers
-{
+namespace WordleSolver.Server.Controllers {
     [ApiController]
-    [Route("wordlesolver")]
-    public class WordleSolverController : ControllerBase
-    {
+    [Route("WordleSolver")]
+    public class WordleSolverController : ControllerBase {
         private readonly ILogger<WordleSolverController> _logger;
 
-        public WordleSolverController(ILogger<WordleSolverController> logger)
-        {
+        public WordleSolverController(ILogger<WordleSolverController> logger) {
             _logger = logger;
         }
 
-        [HttpPost(Name="CalculateNextGuess")]
-        public string Post (GuessHistory Guesses)
-        {
-            foreach (WordleGuess Guess in Guesses.Guesses)
-            {
-                _logger.Log(LogLevel.Information, Guess.StringRepresentation);
-            }
+        [HttpPost(Name = "CalculateNextGuess")]
+        [ValidateModel]
+        public string Post(GuessHistory Guesses) {
             return "lions";
         }
     }
