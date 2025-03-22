@@ -87,6 +87,15 @@ namespace WordleSolver.Tests.Solver {
         }
 
         [Fact]
+        public void Regex_ShouldMatchWord_WhenGreyLetterAppearsBeforeGreenSameLetterInGuess() {
+            var builder = new WordleRegexBuilder();
+            builder.AddGuess(new WordleGuess { Word = "lions", Colors = ["yellow", "grey", "grey", "grey", "grey",] })
+                .AddGuess(new WordleGuess { Word = "abele", Colors = ["green", "yellow", "grey", "green", "green",] });
+            var regex = builder.Build();
+            Assert.Matches(regex, "amble");
+        }
+        
+        [Fact]
         public void AddGuess_ShouldThrowException_WhenInvalidColor() {
             var builder = new WordleRegexBuilder();
             Assert.Throws<ArgumentException>(() => builder.AddGuess(new WordleGuess { Word = "words", Colors = ["grey", "green", "yellow", "yellow", "blue",] }));

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WordleSolver.Server.Controller.Filters;
 using WordleSolver.Server.Controller.Models;
+using WordleSolver.Server.Solver;
 
 namespace WordleSolver.Server.Controller {
     [ApiController]
@@ -14,8 +15,8 @@ namespace WordleSolver.Server.Controller {
 
         [HttpPost(Name = "CalculateNextGuess")]
         [ValidateModel]
-        public string Post(GuessHistory Guesses) {
-            return "lions";
+        public WordleSolverResponse Post(GuessHistory guesses) {
+            return WordleSolverHandler.GenerateSuggestions(guesses);
         }
     }
 }
