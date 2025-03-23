@@ -41,12 +41,9 @@
             SetMin(letter, Math.Max(min, GetMin(letter)));
         }
 
-        /* Suggests a new maximum that is ignored if the maximum is already less than the one provided */
-        public void SuggestMax(char letter, int max) {
-            if (max < GetMin(letter)) {
-                throw new ArgumentException("Maximum cannot be less than current minimum.");
-            }
-            SetMax(letter, Math.Min(max, GetMax(letter)));
+        /* Sets the maximum to the minimum */
+        public void MaxOut(char letter) {
+            SetMax(letter, GetMin(letter));
         }
     }
 }

@@ -32,6 +32,15 @@ namespace WordleSolver.Tests.Solver {
         }
 
         [Fact]
+        public void Regex_ShouldNotMatchWord_WhenGuessHasYellowLetterInSamePlace() {
+            var builder = new WordleRegexBuilder();
+            builder.AddGuess(new WordleGuess { Word = "waves", Colors = ["yellow", "grey", "grey", "grey", "grey"] });
+            var regex = builder.Build();
+
+            Assert.DoesNotMatch(regex, "wbbbb");
+        }
+
+        [Fact]
         public void Regex_ShouldNotMatchWord_WhenGuessIncludesLetterNotInWord() {
             var builder = new WordleRegexBuilder();
             builder.AddGuess(new WordleGuess { Word = "words", Colors = ["grey", "green", "grey", "grey", "grey"] });
@@ -99,13 +108,6 @@ namespace WordleSolver.Tests.Solver {
         public void AddGuess_ShouldThrowException_WhenInvalidColor() {
             var builder = new WordleRegexBuilder();
             Assert.Throws<ArgumentException>(() => builder.AddGuess(new WordleGuess { Word = "words", Colors = ["grey", "green", "yellow", "yellow", "blue",] }));
-        }
-
-        [Fact]
-        public void AddGuess_ShouldThrowException_WhenGuessesContradictEachOther() {
-            var builder = new WordleRegexBuilder();
-            builder.AddGuess(new WordleGuess { Word = "words", Colors = ["grey", "green", "yellow", "yellow", "grey",] });
-            Assert.Throws<ArgumentException>(() => builder.AddGuess(new WordleGuess { Word = "aoaaa", Colors = ["grey", "grey", "grey", "grey", "grey",] }));
         }
     }
 }

@@ -4,11 +4,13 @@ namespace WordleSolver.Server.Solver {
     public class WordleRegexBuilder {
 
         private readonly Dictionary<int, char> foundLetters = [];
+        private readonly Dictionary<int, HashSet<char>> restrictedLetters = [];
         private readonly LetterTracker letterTracker = new();
 
         public WordleRegexBuilder AddGuess(WordleGuess guess) {
             var wordMins = new Dictionary<char, int>();
-            var wordMaxes = new Dictionary<char, int>();
+            var maxedLetters = new HashSet<char>();
+
             for (int i = 0; i < guess.Word.Length; i++) {
                 var letter = guess.Word[i];
                 var color = guess.Colors[i];
@@ -22,19 +24,21 @@ namespace WordleSolver.Server.Solver {
                         wordMins[letter] = 1;
                     }
                 } else if (color == "yellow") {
-                    // There exists one more of this letter in the word
+                    // This index does not contain this letter
+                    if (restrictedLetters.TryGetValue(i, out HashSet<char>? value)) {
+                        value.Add(letter);
+                    } else {
+                        restrictedLetters[i] = [letter];
+                    }
+                    // There exists at least one more of this letter in the word
                     if (wordMins.TryGetValue(letter, out int min)) {
                         wordMins[letter] = min + 1;
                     } else {
                         wordMins[letter] = 1;
                     }
                 } else if (color == "grey") {
-                    // There exists no more of this letter in the word
-                    if (wordMins.TryGetValue(letter, out int min)) {
-                        wordMaxes[letter] = min;
-                    } else {
-                        wordMaxes[letter] = 0;
-                    }
+                    // This word has the maximum number of the letter
+                    maxedLetters.Add(letter);
                 } else {
                     throw new ArgumentException($"Invalid color: {color}");
                 }
@@ -44,8 +48,8 @@ namespace WordleSolver.Server.Solver {
                 foreach (var letter in wordMins.Keys) {
                     letterTracker.SuggestMin(letter, wordMins[letter]);
                 }
-                foreach (var letter in wordMaxes.Keys) {
-                    letterTracker.SuggestMax(letter, wordMaxes[letter]);
+                foreach (var letter in maxedLetters) {
+                    letterTracker.MaxOut(letter);
                 }
             } catch (ArgumentException) {
                 throw new ArgumentException($"Guess \"{guess.Word}\" contradicts another guess.");
@@ -73,6 +77,8 @@ namespace WordleSolver.Server.Solver {
             for (int i = 0; i < 5; i++) {
                 if (foundLetters.TryGetValue(i, out char value)) {
                     pattern += value;
+                } else if (restrictedLetters.TryGetValue(i, out HashSet<char>? letters)) {
+                    pattern += $"[^{string.Join("", letters)}]";
                 } else {
                     pattern += "[a-z]";
                 }
