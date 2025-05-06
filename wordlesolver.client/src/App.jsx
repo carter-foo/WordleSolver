@@ -1,5 +1,5 @@
 import "./App.css";
-import WordleSolver from "./WordleSolver";
+import WordleSolver from "./pages/WordleSolver/WordleSolver";
 
 function App() {
   return <WordleSolver />;

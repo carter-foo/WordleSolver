@@ -1,7 +1,7 @@
 import { useState } from "react";
-import WordleGuess from "./components/WordleGuess";
+import WordleGuess from "./../../components/WordleGuess/WordleGuess";
+import NextGuesses from "./../../components/NextGuesses/NextGuesses";
 import "./WordleSolver.css";
-import NextGuesses from "./components/NextGuesses";
 
 function WordleSolver() {
   /*
