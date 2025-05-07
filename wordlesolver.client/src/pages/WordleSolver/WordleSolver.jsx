@@ -1,6 +1,7 @@
 import { useState } from "react";
 import WordleGuess from "./../../components/WordleGuess/WordleGuess";
 import NextGuesses from "./../../components/NextGuesses/NextGuesses";
+import BackendConnector from "./../../network/BackendConnector";
 import "./WordleSolver.css";
 
 function WordleSolver() {
@@ -14,6 +15,7 @@ function WordleSolver() {
   const [guesses, setGuesses] = useState([
     { letters: ["", "", "", "", ""], colors: [1, 1, 1, 1, 1] },
   ]);
+  const [suggestions, setSuggestions] = useState([]);
 
   const handleChangeGuess = (newGuess, i) => {
     let newGuesses = [...guesses];
@@ -24,7 +26,6 @@ function WordleSolver() {
   const handleAddGuess = (guessIndex) => {
     // Only add a new guess if the guess where the user hit enter is the last guess
     if (guessIndex === guesses.length - 1) {
-      console.log("Adding new guess");
       let newGuesses = [...guesses];
       newGuesses.push({
         letters: ["", "", "", "", ""],
@@ -43,6 +44,13 @@ function WordleSolver() {
     newGuesses.splice(index, 1);
     setGuesses(newGuesses);
   };
+
+  const handleFindGuesses = () => {
+    const connector = new BackendConnector();
+    connector.getNextGuesses(guesses).then((suggestions) => {
+      setSuggestions(suggestions);
+    });
+  }
 
   return (
     <div className="wordleSolver">
@@ -64,8 +72,8 @@ function WordleSolver() {
       </div>
       <div className="bottomBar">
         <div className="bottomBarContent">
-          <button className="findGuessesButton">Find Guesses</button>
-          <NextGuesses />
+          <button className="findGuessesButton" onClick={handleFindGuesses}>Find Guesses</button>
+          <NextGuesses nextGuesses={suggestions}/>
         </div>
       </div>
     </div>

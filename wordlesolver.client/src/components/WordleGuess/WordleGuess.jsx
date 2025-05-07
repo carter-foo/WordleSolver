@@ -2,7 +2,7 @@ import WordleLetter from "../WordleLetter/WordleLetter";
 import "./WordleGuess.css";
 import { useState, useRef, useEffect } from "react";
 import binLogo from "../../assets/bin.png";
-import refreshLogo from "../assets/refresh.png";
+import refreshLogo from "../../assets/refresh.png";
 
 function WordleGuess(props) {
   const [showSideButtons, setShowSideButtons] = useState(false);

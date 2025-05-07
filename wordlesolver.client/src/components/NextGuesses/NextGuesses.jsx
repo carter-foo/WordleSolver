@@ -1,10 +1,16 @@
 import "./NextGuesses.css";
 
-function NextGuesses() {
+function NextGuesses(props) {
   return (
     <div className="nextGuessesContainer">
       <div className="nextGuesses">
-        <div className="nextGuess">guess</div>
+        {props.nextGuesses.map((guess, i) => {
+          return (
+            <div key={i} className="nextGuess">
+              {guess}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

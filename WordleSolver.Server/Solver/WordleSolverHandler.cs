@@ -2,6 +2,7 @@
 
 namespace WordleSolver.Server.Solver {
     public class WordleSolverHandler {
+        private static readonly int _maxSuggestions = 15;
         public static WordleSolverResponse GenerateSuggestions(GuessHistory guessHistory) {
             var builder = new WordleRegexBuilder();
             var wordList = WordList.GetInstance();
@@ -10,7 +11,7 @@ namespace WordleSolver.Server.Solver {
                 builder.AddGuess(guess);
             }
             string regex = builder.Build();
-            var matches = wordList.GetMatches(regex);
+            var matches = wordList.GetTopMatches(regex, _maxSuggestions);
 
             return new WordleSolverResponse {
                 Suggestions = matches

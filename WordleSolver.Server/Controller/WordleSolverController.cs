@@ -15,8 +15,9 @@ namespace WordleSolver.Server.Controller {
 
         [HttpPost(Name = "CalculateNextGuess")]
         [ValidateModel]
-        public WordleSolverResponse Post(GuessHistory guesses) {
-            return WordleSolverHandler.GenerateSuggestions(guesses);
+        public IActionResult Post(GuessHistory guesses) {
+            WordleSolverResponse response = WordleSolverHandler.GenerateSuggestions(guesses);
+            return Ok(response);
         }
     }
 }

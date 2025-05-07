@@ -16,7 +16,11 @@ namespace WordleSolver.Server.Solver {
             words = File.ReadAllLines(filePath).ToList();
         }
 
-        public List<string> GetMatches(string regex) {
+        public List<string> GetTopMatches(string regex, int num) {
+            return words.Where(words => Regex.IsMatch(words, regex)).Take(num).ToList();
+        }
+
+        public List<string> GetAllMatches(string regex) {
             return words.Where(words => Regex.IsMatch(words, regex)).ToList();
         }
     }

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import ColorPicker from "./ColorPicker";
+import ColorPicker from "../ColorPicker/ColorPicker";
 import "./WordleLetter.css";
 
 const WordleLetter = React.forwardRef((props, ref) => {
